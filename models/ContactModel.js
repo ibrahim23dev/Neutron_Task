@@ -3,22 +3,22 @@ const { model, Schema } = require("mongoose");
 const DataSchema = Schema({
   name: {
     type: String,
-    required: true // Corrected from require to required
+    required: true 
   },
   email: {
     type: String,
   },
   phone: {
     type: String,
-    required: true // Corrected from require to required
+    required: true 
   },
   address: {
     type: String,
-    required: true // Corrected from require to required
+    required: true 
   },
   picture: {
     type: String,
-    required: true // Corrected from require to required
+    required: true 
   },
   createdDate: {
     type: Date,

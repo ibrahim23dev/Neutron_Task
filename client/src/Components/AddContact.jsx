@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState } from "react";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const FormComponent = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    address: '',
-    picture: '', // Change to string for image link
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    picture: "", // Change to string for image link
   });
 
   const handleChange = (e) => {
@@ -23,18 +23,21 @@ const FormComponent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/create-contact', formData);
-      toast.success('Data saved successfully!');
+      const response = await axios.post(
+        "http://localhost:5000/api/create-contact",
+        formData
+      );
+      toast.success("Data saved successfully!");
       console.log(response.data); // Assuming server returns saved data
       setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        address: '',
-        picture: '', // Reset picture link after successful submission
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        picture: "", // Reset picture link after successful submission
       });
     } catch (error) {
-      toast.error('Error saving data. Please try again.');
+      toast.error("Error saving data. Please try again.");
       console.error(error);
     }
   };
@@ -44,7 +47,10 @@ const FormComponent = () => {
       <div className="bg-white rounded-lg shadow-lg pt-10 p-5">
         <form onSubmit={handleSubmit} className="space-y-10">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700"
+            >
               Name
             </label>
             <input
@@ -58,7 +64,10 @@ const FormComponent = () => {
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
               Email
             </label>
             <input
@@ -72,7 +81,10 @@ const FormComponent = () => {
             />
           </div>
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="phone"
+              className="block text-sm font-medium text-gray-700"
+            >
               Phone
             </label>
             <input
@@ -86,7 +98,10 @@ const FormComponent = () => {
             />
           </div>
           <div>
-            <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="address"
+              className="block text-sm font-medium text-gray-700"
+            >
               Address
             </label>
             <textarea
@@ -99,7 +114,10 @@ const FormComponent = () => {
             />
           </div>
           <div>
-            <label htmlFor="picture" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="picture"
+              className="block text-sm font-medium text-gray-700"
+            >
               Picture Link
             </label>
             <input

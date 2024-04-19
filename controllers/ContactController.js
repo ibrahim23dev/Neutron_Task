@@ -28,13 +28,11 @@ class ContactController {
   }
 
   async getContact(req, res) {
-    const { page = 1, searchValue, parPage = 5} = req.query;
+    const { page = 1, searchValue, parPage = 5 } = req.query;
     const skipPage = parseInt(parPage) * (parseInt(page) - 1);
 
-   
     const tasksQuery = {};
     if (searchValue) {
-      // Add search condition for name, email, phone, or address
       tasksQuery.$or = [
         { name: { $regex: searchValue, $options: "i" } },
         { email: { $regex: searchValue, $options: "i" } },
@@ -44,7 +42,6 @@ class ContactController {
     }
 
     try {
-      // Use the tasksQuery object directly in the find query
       const tasks = await ContactModel.find(tasksQuery)
         .skip(skipPage)
         .limit(parPage)
@@ -76,20 +73,17 @@ class ContactController {
       const contactId = req.params.id;
       const { name, email, phone, address, picture } = req.body;
 
-      // Check if the contact exists
       const contact = await ContactModel.findById(contactId);
       if (!contact) {
         return res.status(404).json({ message: "Contact not found" });
       }
 
-      // Update the contact fields
       contact.name = name;
       contact.email = email;
       contact.phone = phone;
       contact.address = address;
       contact.picture = picture;
 
-      // Save the updated contact
       await contact.save();
 
       res.json(contact);
@@ -102,20 +96,16 @@ class ContactController {
     try {
       const id = req.params.id;
 
-      // Use findByIdAndDelete to find and delete the contact in a single operation
       const deletedContact = await ContactModel.findByIdAndDelete(id);
 
       if (!deletedContact) {
-        // If deletedContact is null, the contact was not found
         return res
           .status(404)
           .json({ status: "fail", message: "Contact not found" });
       }
 
-      // Return a success message along with the deleted contact data
       res.status(200).json({ status: "success", data: deletedContact });
     } catch (error) {
-      // Catch any errors that occur during the deletion process
       res.status(500).json({ status: "fail", message: error.message });
     }
   }

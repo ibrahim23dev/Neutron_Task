@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const EditFormComponent = () => {
   const { id } = useParams();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    address: '',
-    picture: '',
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    picture: "",
   });
 
   useEffect(() => {
@@ -20,11 +20,13 @@ const EditFormComponent = () => {
 
   const fetchContact = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/get-contact/${id}`);
+      const response = await axios.get(
+        `http://localhost:5000/api/get-contact/${id}`
+      );
       setFormData(response.data);
     } catch (error) {
-      console.error('Error fetching contact:', error);
-      toast.error('Failed to fetch contact.');
+      console.error("Error fetching contact:", error);
+      toast.error("Failed to fetch contact.");
     }
   };
 
@@ -39,11 +41,14 @@ const EditFormComponent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/api/update-contact/${id}`, formData);
-      toast.success('Contact updated successfully.');
+      await axios.post(
+        `http://localhost:5000/api/update-contact/${id}`,
+        formData
+      );
+      toast.success("Contact updated successfully.");
     } catch (error) {
-      console.error('Error updating contact:', error);
-      toast.error('Failed to update contact.');
+      console.error("Error updating contact:", error);
+      toast.error("Failed to update contact.");
     }
   };
 
@@ -52,7 +57,10 @@ const EditFormComponent = () => {
       <div className="bg-white rounded-lg shadow-lg pt-10 p-5">
         <form onSubmit={handleSubmit} className="space-y-10">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700"
+            >
               Name
             </label>
             <input
@@ -66,7 +74,10 @@ const EditFormComponent = () => {
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
               Email
             </label>
             <input
@@ -80,7 +91,10 @@ const EditFormComponent = () => {
             />
           </div>
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="phone"
+              className="block text-sm font-medium text-gray-700"
+            >
               Phone
             </label>
             <input
@@ -94,7 +108,10 @@ const EditFormComponent = () => {
             />
           </div>
           <div>
-            <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="address"
+              className="block text-sm font-medium text-gray-700"
+            >
               Address
             </label>
             <textarea
@@ -107,7 +124,10 @@ const EditFormComponent = () => {
             />
           </div>
           <div>
-            <label htmlFor="picture" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="picture"
+              className="block text-sm font-medium text-gray-700"
+            >
               Picture Link
             </label>
             <input
